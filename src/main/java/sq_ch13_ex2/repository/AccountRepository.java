@@ -16,7 +16,7 @@ public class AccountRepository {
 	
 	// 총 3 개의 메소드를 만든다.
 	// 1. 모든 계정 읽어 반환하기 - getAllAccounts()
-	// 2. 한 계정의 금액을 변경하기 - updateAmount()
+	// 2. 새 계정 정보를 디비에 저장하기 - storeAccount()
 	// 3. 한 계정의 정보를 읽어 반환하기 - - getOneAccount
 	
 	// 1
@@ -26,19 +26,11 @@ public class AccountRepository {
 	}
 	
 	// 2
-	public void updateAmount(int sndrId, int rcvrId, BigDecimal transferAmt) {
-		// 두 계정 정보를 읽어온다.
-		Account acctSndr = getOneAccount(sndrId);
-		Account acctRcvr = getOneAccount(rcvrId);
-		
-		// 두 계정의 새 금액을 계산한다.
-		var amtSndr = acctSndr.getAmount().subtract(transferAmt);
-		var amtRcvr = acctRcvr.getAmount().add(transferAmt);
-		
-		// 두 계정의 금액을 갱신한다.
-		String sql = "update account set amount=? where id=?";
-		template.update(sql, sndrId, amtSndr);
-		template.update(sql, rcvrId, amtRcvr);
+	public void storeAccount(Account account) {
+		// 계정 정보를 디비 테이블에 저장한다.
+		// INSERT INTO account(name, amount) VALUES('철수', 100000);
+		String sql = "insert into account(name, amount) values(?, ?)";
+		template.update(sql, account.getName(), account.getAmount());
 	}
 	
 	// 3. 
