@@ -38,6 +38,10 @@ public class AccountService {
 		
 		// 두 계정의 금액을 갱신한다.
 		repository.updateAmount(idSndr, amtSndr);
+		int luck = 100;
+		if (0 < luck)
+			throw new RuntimeException("고의적으로 송금액 입금 좌절");
 		repository.updateAmount(idRcvr, amtRcvr);
+		
 	}
 }
