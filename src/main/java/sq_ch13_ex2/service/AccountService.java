@@ -3,6 +3,7 @@ package sq_ch13_ex2.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import sq_ch13_ex2.dto.Account;
 import sq_ch13_ex2.repository.AccountRepository;
 
 @AllArgsConstructor
+@Service
 public class AccountService {
 	private final AccountRepository repository;
 	
