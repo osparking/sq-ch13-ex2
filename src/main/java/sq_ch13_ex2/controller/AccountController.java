@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class AccountController {
 	private final AccountService service;
 	
 	@PostMapping("/transfer") 
-	public void transferMoney(TransferRequest transfer) {
+	public void transferMoney(@RequestBody TransferRequest transfer) {
 		service.transferMoney(
 				transfer.getSndrId(),
 				transfer.getRcvrId(), 
